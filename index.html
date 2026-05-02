@@ -3,125 +3,216 @@
 <head>
     <title>Mi CV</title>
     <style>
-        body { 
-            background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%); 
-            color: #333; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 20px; 
-            line-height: 1.6; 
+        :root {
+            --bg: #eef2f7;
+            --card: #ffffff;
+            --text: #1f2937;
+            --primary: #1f6f8b;
+            --secondary: #2e8b57;
+            --muted: #64748b;
+            --shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
         }
-        header { 
-            display: flex; 
-            flex-wrap: wrap; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 20px;
-            background: linear-gradient(135deg, #2e8b57 0%, #4682b4 100%); 
-            color: white; 
-            padding: 20px; 
-            border-radius: 10px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 6px 14px rgba(0,0,0,0.22); 
+
+        * {
+            box-sizing: border-box;
         }
-        header img { 
-            width: 140px; 
-            height: 140px; 
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 40px));
+            margin: 40px auto;
+            padding: 0;
+        }
+
+        .profile-card {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 24px;
+            align-items: center;
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 26px;
+        }
+
+        .profile-card img {
+            width: 160px;
+            height: 160px;
             object-fit: cover;
-            border-radius: 50%; 
-            border: 5px solid rgba(255,255,255,0.9); 
-            box-shadow: 0 8px 16px rgba(0,0,0,0.18); 
+            border-radius: 24px;
+            border: 4px solid rgba(56, 189, 248, 0.18);
+            box-shadow: 0 16px 40px rgba(56, 189, 248, 0.15);
         }
-        header div { 
-            max-width: 580px; 
+
+        .profile-card h1 {
+            margin: 0 0 10px;
+            font-size: clamp(2rem, 2.5vw, 2.7rem);
+            letter-spacing: -0.03em;
         }
-        h1 { 
-            margin: 0; 
-            font-size: 2.3em; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.25); 
+
+        .profile-card p {
+            margin: 6px 0;
+            color: var(--muted);
         }
-        .contact { 
-            font-weight: bold; 
-            margin-top: 10px; 
-            font-size: 1.05em; 
-            line-height: 1.4; 
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
         }
-        h2 { 
-            color: #4682b4; 
-            border-bottom: 2px solid #2e8b57; 
-            padding-bottom: 5px; 
-            margin-bottom: 10px; 
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.12);
+            color: #0f172a;
+            font-size: 0.95em;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(59, 130, 246, 0.18);
         }
-        .section { 
-            background-color: #ffffff; 
-            padding: 20px; 
-            border-radius: 10px; 
-            margin-bottom: 20px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-            transition: transform 0.2s; 
+
+        .section {
+            background: var(--card);
+            padding: 26px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
         }
-        .section:hover { 
-            transform: translateY(-5px); 
+
+        .section h2 {
+            margin: 0 0 18px;
+            color: var(--primary);
+            font-size: 1.35rem;
+            position: relative;
         }
-        ul { 
-            list-style-type: none; 
-            padding-left: 0; 
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 48px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
         }
-        ul li { 
-            background: #f9f9f9; 
-            margin: 5px 0; 
-            padding: 10px; 
-            border-left: 4px solid #4682b4; 
-            border-radius: 5px; 
+
+        .section p {
+            margin: 0 0 14px;
+            color: #475569;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .section ul li {
+            display: grid;
+            gap: 8px;
+            padding: 18px 18px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .section ul li strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .section .small {
+            color: var(--muted);
+            font-size: 0.96em;
+        }
+
+        @media (max-width: 820px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-card img {
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="foto.jpg" alt="Foto de Diana Karen Miranda Quispe" onerror="this.src='https://via.placeholder.com/140/2e8b57/ffffff?text=D';">
-        <div>
-            <h1>Diana Karen Miranda Quispe</h1>
-            <p class="contact">Edad: 18 años | Teléfono: 942161977 | Email: dianamiranda1107@gmail.com</p>
-        </div>
-    </header>
+    <div class="container">
+        <section class="profile-card">
+            <img src="foto.jpg" alt="Foto de Diana Karen Miranda Quispe" onerror="this.src='https://via.placeholder.com/160/2e8b57/ffffff?text=D';">
+            <div>
+                <h1>Diana Karen Miranda Quispe</h1>
+                <p>Edad: 18 años</p>
+                <p>Teléfono: 942161977 | Email: dianamiranda1107@gmail.com</p>
+                <div class="tag-list">
+                    <span class="tag">Disponibilidad inmediata</span>
+                    <span class="tag">Atención al cliente</span>
+                    <span class="tag">Ventas y retail</span>
+                </div>
+            </div>
+        </section>
 
-    <section class="section">
-        <h2>Resumen Profesional</h2>
-        <p>Joven de 18 años con experiencia en ventas y atención al público. Soy responsable, puntual y tengo disponibilidad inmediata. Me desenvuelvo bien en diversos entornos laborales y estoy dispuesta a aprender y contribuir en cualquier puesto de trabajo.</p>
+        <section class="section">
+        <h2>Perfil Profesional</h2>
+        <p>Joven proactiva de 18 años con experiencia en atención al público, ventas y cuidado infantil. Me caracterizo por mi actitud responsable, puntualidad y disposición para aprender rápidamente. Tengo una excelente capacidad para relacionarme con clientes y trabajar en equipo bajo presión.</p>
+        <p>Busco oportunidades en áreas de servicio, ventas o apoyo general donde pueda aportar mi motivación, compromiso y disponibilidad inmediata para colaborar con el logro de objetivos.</p>
     </section>
 
     <section class="section">
         <h2>Experiencia Laboral</h2>
         <ul>
-            <li><strong>Vendedora y Niñera</strong> (2025)<br>Vendí ropa, zapatillas, piñatería y otros productos. También trabajé como niñera. Atendí al público de manera excelente, demostrando habilidades en ventas y cuidado infantil.</li>
+            <li><strong>Vendedora y Niñera</strong>  (2025)<br>Atención directa al cliente en la venta de ropa, zapatillas y artículos de piñatería, manteniendo el orden de los productos y ofreciendo un servicio amable y efectivo. También colaboré en el cuidado de niños como niñera, demostrando responsabilidad, paciencia y confianza por parte de las familias.</li>
         </ul>
+        <p>Durante esta experiencia, desarrollé habilidades en servicio al cliente, manejo de inventario básico y organización del área de venta, garantizando una experiencia agradable para los compradores.</p>
     </section>
 
     <section class="section">
         <h2>Educación</h2>
         <ul>
-            <li><strong>Educación Secundaria Completa</strong> - Institución Educativa (2024)<br>Graduada con conocimientos básicos en diversas materias.</li>
+            <li><strong>Educación Secundaria Completa</strong> - Institución Educativa (2024)<br>Graduada con formación académica sólida y conocimientos en comunicación, matemáticas y trabajo colaborativo.</li>
         </ul>
     </section>
 
     <section class="section">
-        <h2>Habilidades</h2>
+        <h2>Competencias</h2>
         <ul>
-            <li>Atención al público excelente</li>
-            <li>Trabajo en equipo</li>
+            <li>Atención al público con amabilidad y respeto</li>
+            <li>Comunicación clara y asertiva</li>
+            <li>Trabajo en equipo y colaboración</li>
             <li>Responsabilidad y puntualidad</li>
-            <li>Capacidad de aprendizaje rápido</li>
-            <li>Disponibilidad inmediata</li>
-            <li>Habilidades en ventas y cuidado infantil</li>
+            <li>Adaptabilidad a diferentes tareas y horarios</li>
+            <li>Iniciativa para resolver situaciones prácticas</li>
         </ul>
+    </section>
+
+    <section class="section">
+        <h2>Disponibilidad</h2>
+        <p>100% inmediata. Disponible para trabajar en horarios flexibles y asumir responsabilidades en atención al cliente, ventas, apoyo administrativo o cuidado infantil.</p>
     </section>
 
     <section class="section">
         <h2>Idiomas</h2>
         <ul>
             <li>Español - Nativo</li>
-            <li>Inglés - Intermedio</li>
         </ul>
     </section>
-
+    </div>
 </body>
 </html>
